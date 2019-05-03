@@ -1,11 +1,11 @@
 package pl.kocie_stopki.kocie.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
 import pl.kocie_stopki.kocie.entity.Item;
 import pl.kocie_stopki.kocie.repository.ItemRepo;
 
-@RestController
+@Controller
 public class DataBaseManager {
     private ItemRepo itemRepo;
 
@@ -14,40 +14,29 @@ public class DataBaseManager {
         this.itemRepo = itemRepo;
     }
 
-    @PostMapping("/add")
-    public void addItem(@RequestBody Item item) {
+    void addItem(Item item) {
         itemRepo.save(item);
     }
 
-    @DeleteMapping("/delete")
-    public String deleteItem(@RequestParam int id) {
-        if (itemRepo.findById(id).isPresent()) {
-            Item itemToDelete = itemRepo.findById(id).get();
+    String deleteItem(Item item) {
+        if (itemRepo.findById(item.getId()).isPresent()) {
+            Item itemToDelete = itemRepo.findById(item.getId()).get();
             itemRepo.delete(itemToDelete);
             return "Item " + itemToDelete.getName() + " has been deleted";
         }
         return "There is no item with such id in database";
     }
 
-    @PutMapping("/update")
-    public String updateItem(@RequestParam int id,
-                             @RequestParam(value = "name", required = false) String name,
-                             @RequestParam(value = "price", required = false) Double price,
-                             @RequestParam(value = "description", required = false) String description) {
-        if (itemRepo.findById(id).isPresent()) {
-            Item itemToUpdate = itemRepo.findById(id).get();
-            if (name != null) {
-                itemToUpdate.setName(name);
-            }
-            if (price != null) {
-                itemToUpdate.setPrice(price);
-            }
-            if (description != null) {
-                itemToUpdate.setDescription(description);
-            }
+    String updateItem(Item item) {
+        if (itemRepo.findById(item.getId()).isPresent()) {
+            Item itemToUpdate = itemRepo.findById(item.getId()).get();
+            itemToUpdate.setName(item.getName());
+            itemToUpdate.setPrice(item.getPrice());
+            itemToUpdate.setDescription(item.getDescription());
+            itemToUpdate.setQuantity(item.getQuantity());
             itemRepo.save(itemToUpdate);
-            return "Item with id: " + id + " has been updated";
+            return "Item with id: " + item.getId() + " has been updated";
         }
-        return "No item with id number: " + id + " in database";
+        return "No item with id number: " + item.getId() + " in database";
     }
 }

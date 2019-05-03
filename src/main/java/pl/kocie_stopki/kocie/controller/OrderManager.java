@@ -2,11 +2,10 @@ package pl.kocie_stopki.kocie.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pl.kocie_stopki.kocie.entity.OrderItems;
-import pl.kocie_stopki.kocie.repository.OrderItemsRespository;
+import pl.kocie_stopki.kocie.entity.Order;
+import pl.kocie_stopki.kocie.repository.OrderRespository;
 import pl.kocie_stopki.kocie.entity.User;
 import pl.kocie_stopki.kocie.repository.UserRepository;
 
@@ -14,12 +13,12 @@ import pl.kocie_stopki.kocie.repository.UserRepository;
 public class OrderManager {
     private UserRepository userRepository;
 
-    private OrderItemsRespository orderItemsRespository;
+    private OrderRespository orderRespository;
 
     @Autowired
-    public OrderManager(UserRepository userRepository, OrderItemsRespository orderItemsRespository) {
+    public OrderManager(UserRepository userRepository, OrderRespository orderRespository) {
         this.userRepository = userRepository;
-        this.orderItemsRespository = orderItemsRespository;
+        this.orderRespository = orderRespository;
     }
 
 //    @PostMapping("/saveorder")
@@ -38,9 +37,9 @@ public class OrderManager {
 
     @GetMapping("/searchbyuser")
     public String searchOrder(@RequestParam int id){
-        if (orderItemsRespository.findById(id).isPresent()) {
-            OrderItems orderItems = orderItemsRespository.findById(id).get();
-            return orderItems.toString();
+        if (orderRespository.findById(id).isPresent()) {
+            Order order = orderRespository.findById(id).get();
+            return order.toString();
         }
         return "There is no order with such id in database";
     }
