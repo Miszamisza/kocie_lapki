@@ -19,6 +19,7 @@ public class Cart {
         System.out.println(", quantity " +quantity + ", price " + price);
         for (int i = 0; i<items.size(); i++){
             FinalPrice+= quantity * price;
+            System.out.println("Cart value = " + FinalPrice);
         }
     }
 }
