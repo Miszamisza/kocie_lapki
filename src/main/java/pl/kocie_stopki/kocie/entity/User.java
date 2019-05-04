@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 @ToString
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Component
 public class User {
 
     @Id
@@ -22,7 +24,6 @@ public class User {
     private boolean active;
 
     @OneToOne
-    private OrderItems orderItems;
-
+    private Order order;
 
 }
