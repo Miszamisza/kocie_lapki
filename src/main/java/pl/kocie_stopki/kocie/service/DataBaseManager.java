@@ -1,11 +1,12 @@
-package pl.kocie_stopki.kocie.controller;
+package pl.kocie_stopki.kocie.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import pl.kocie_stopki.kocie.entity.Item;
 import pl.kocie_stopki.kocie.repository.ItemRepo;
 
-@RestController
+@Service
 public class DataBaseManager {
     private ItemRepo itemRepo;
 
@@ -20,7 +21,7 @@ public class DataBaseManager {
     }
 
     @DeleteMapping("/delete")
-    public String deleteItem(@RequestParam int id) {
+    public String deleteItem(@RequestParam Item id) {
         if (itemRepo.findById(id).isPresent()) {
             Item itemToDelete = itemRepo.findById(id).get();
             itemRepo.delete(itemToDelete);
@@ -50,4 +51,5 @@ public class DataBaseManager {
         }
         return "No item with id number: " + id + " in database";
     }
+
 }

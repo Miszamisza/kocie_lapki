@@ -1,6 +1,7 @@
-package pl.kocie_stopki.kocie.controller;
+package pl.kocie_stopki.kocie.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,14 +11,14 @@ import pl.kocie_stopki.kocie.repository.OrderItemsRespository;
 import pl.kocie_stopki.kocie.entity.User;
 import pl.kocie_stopki.kocie.repository.UserRepository;
 
-@RestController("order")
-public class OrderManager {
-    private UserRepository userRepository;
+@Service("orderManager")
+public class OrderManagerImpl implements OrderMenager{
 
+    private UserRepository userRepository;
     private OrderItemsRespository orderItemsRespository;
 
     @Autowired
-    public OrderManager(UserRepository userRepository, OrderItemsRespository orderItemsRespository) {
+    public OrderManagerImpl(UserRepository userRepository, OrderItemsRespository orderItemsRespository) {
         this.userRepository = userRepository;
         this.orderItemsRespository = orderItemsRespository;
     }
@@ -44,4 +45,5 @@ public class OrderManager {
         }
         return "There is no order with such id in database";
     }
+
 }
