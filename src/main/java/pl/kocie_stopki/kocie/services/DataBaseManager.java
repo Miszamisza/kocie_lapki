@@ -1,11 +1,11 @@
-package pl.kocie_stopki.kocie.controller;
+package pl.kocie_stopki.kocie.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import pl.kocie_stopki.kocie.entity.Item;
 import pl.kocie_stopki.kocie.repository.ItemRepo;
 
-@Controller
+@Service
 public class DataBaseManager {
     private ItemRepo itemRepo;
 
@@ -14,11 +14,11 @@ public class DataBaseManager {
         this.itemRepo = itemRepo;
     }
 
-    void addItem(Item item) {
+    public void addItem(Item item) {
         itemRepo.save(item);
     }
 
-    String deleteItem(Item item) {
+    public String deleteItem(Item item) {
         if (itemRepo.findById(item.getId()).isPresent()) {
             Item itemToDelete = itemRepo.findById(item.getId()).get();
             itemRepo.delete(itemToDelete);
@@ -27,7 +27,7 @@ public class DataBaseManager {
         return "There is no item with such id in database";
     }
 
-    String updateItem(Item item) {
+    public String updateItem(Item item) {
         if (itemRepo.findById(item.getId()).isPresent()) {
             Item itemToUpdate = itemRepo.findById(item.getId()).get();
             itemToUpdate.setName(item.getName());

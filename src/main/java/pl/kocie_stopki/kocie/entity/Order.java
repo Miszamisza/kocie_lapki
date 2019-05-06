@@ -7,12 +7,14 @@ import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
+
 @ToString
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Component
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +23,7 @@ public class Order {
     @OneToOne(mappedBy = "order")
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "item_id")
-    private Item item;
-
+    @OneToMany
+    @JoinColumn(name = "id_item")
+    private List<Item> item;
 }

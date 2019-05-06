@@ -12,7 +12,6 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @Entity
-@Component
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
