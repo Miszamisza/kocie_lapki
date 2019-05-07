@@ -6,18 +6,24 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
+
 @ToString
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class OrderItems {
+@Table(name = "orders")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_order;
 
-    @OneToOne(mappedBy = "id_user")
+    @OneToOne(mappedBy = "order")
     private User user;
 
+    @OneToMany
+    @JoinColumn(name = "id_item")
+    private List<Item> item;
 
 }

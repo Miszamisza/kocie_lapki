@@ -6,13 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+
 @ToString
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -22,7 +22,6 @@ public class User {
     private boolean active;
 
     @OneToOne
-    private OrderItems orderItems;
-
+    private Order order;
 
 }
