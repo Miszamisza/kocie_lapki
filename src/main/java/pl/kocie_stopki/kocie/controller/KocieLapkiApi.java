@@ -7,6 +7,9 @@ import pl.kocie_stopki.kocie.entity.Order;
 import pl.kocie_stopki.kocie.entity.User;
 import pl.kocie_stopki.kocie.services.DataBaseManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class KocieLapkiApi {
     private DataBaseManager dataBaseManager;
@@ -50,6 +53,23 @@ public class KocieLapkiApi {
     public void addUserToDatabase(@RequestBody User user) {
         dataBaseManager.addUser(user);
     }
+
+//    @GetMapping("/getMeeeeee")
+//    public Order getOreder() {
+////        User user = new User();
+////        user.setEmail("kotki@mail.com");
+////        user.setPassword("1234");
+////        user.setLogin("kotek2000");
+////        user.setActive(true);
+////        List<Item> items = new ArrayList<>();
+////        items.add(new Item(1, "łapka", 10.50, "piękna pachnąca łapka", 50, "http:www:asdsad.pl"));
+////        items.add(new Item(2, "kuweta", 15.30, "duża kuweta", 100, "http:www:gggdhhtusjj.pl"));
+////        Order or = new Order();
+////        or.setUser(user);
+////        or.setItem(items);
+////        return or;
+//    }
+
 
     @DeleteMapping("/user/delete")
     public String deleteUserFromDatabase(@RequestBody User user) {

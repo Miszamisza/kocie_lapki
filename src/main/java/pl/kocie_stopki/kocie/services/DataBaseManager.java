@@ -8,6 +8,9 @@ import pl.kocie_stopki.kocie.repository.ItemRepo;
 import pl.kocie_stopki.kocie.repository.OrderRepo;
 import pl.kocie_stopki.kocie.repository.UserRepo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class DataBaseManager {
@@ -19,6 +22,12 @@ public class DataBaseManager {
         this.itemRepo = itemRepo;
         this.orderRepo = orderRepo;
         this.userRepo = userRepo;
+    }
+
+    public List<Item> getAllItems() {
+        List<Item> items = new ArrayList<>();
+        itemRepo.findAll().forEach(items::add);
+        return items;
     }
 
     public void addItem(Item item) {

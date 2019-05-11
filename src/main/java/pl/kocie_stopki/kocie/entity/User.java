@@ -1,9 +1,9 @@
 package pl.kocie_stopki.kocie.entity;
 
 import lombok.*;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +19,6 @@ public class User {
     private String password;
     private boolean active;
 
-    @OneToOne
-    private Order order;
-
+    @OneToMany(mappedBy = "user")
+    private List<Order> order;
 }

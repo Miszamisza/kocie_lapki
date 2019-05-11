@@ -19,10 +19,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(mappedBy = "order", cascade = PERSIST)
+    @ManyToOne(cascade = MERGE)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany
-    @JoinColumn(name = "item_id")
+    @OneToMany(cascade = MERGE)
+    @JoinColumn(name = "order_id")
     private List<Item> item;
 }
