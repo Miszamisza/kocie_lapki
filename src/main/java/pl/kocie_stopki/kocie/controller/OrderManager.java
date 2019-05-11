@@ -5,20 +5,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.kocie_stopki.kocie.entity.Order;
-import pl.kocie_stopki.kocie.repository.OrderRespository;
+import pl.kocie_stopki.kocie.repository.OrderRepo;
 import pl.kocie_stopki.kocie.entity.User;
-import pl.kocie_stopki.kocie.repository.UserRepository;
+import pl.kocie_stopki.kocie.repository.UserRepo;
 
 @RestController("order")
 public class OrderManager {
-    private UserRepository userRepository;
+    private UserRepo userRepo;
 
-    private OrderRespository orderRespository;
+    private OrderRepo orderRepo;
 
     @Autowired
-    public OrderManager(UserRepository userRepository, OrderRespository orderRespository) {
-        this.userRepository = userRepository;
-        this.orderRespository = orderRespository;
+    public OrderManager(UserRepo userRepo, OrderRepo orderRepo) {
+        this.userRepo = userRepo;
+        this.orderRepo = orderRepo;
     }
 
 //    @PostMapping("/saveorder")
@@ -28,8 +28,8 @@ public class OrderManager {
 
     @GetMapping("/searchorder")
     public String searchUser(@RequestParam int id){
-        if (userRepository.findById(id).isPresent()) {
-            User userToFind = userRepository.findById(id).get();
+        if (userRepo.findById(id).isPresent()) {
+            User userToFind = userRepo.findById(id).get();
             return userToFind.toString();
         }
         return "There is no user with such id in database";
@@ -37,8 +37,8 @@ public class OrderManager {
 
     @GetMapping("/searchbyuser")
     public String searchOrder(@RequestParam int id){
-        if (orderRespository.findById(id).isPresent()) {
-            Order order = orderRespository.findById(id).get();
+        if (orderRepo.findById(id).isPresent()) {
+            Order order = orderRepo.findById(id).get();
             return order.toString();
         }
         return "There is no order with such id in database";

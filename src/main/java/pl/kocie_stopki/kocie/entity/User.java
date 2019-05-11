@@ -1,13 +1,10 @@
 package pl.kocie_stopki.kocie.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-@ToString
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,9 +13,9 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String login;
-    private String eMail;
+    private String email;
     private String password;
     private boolean active;
 

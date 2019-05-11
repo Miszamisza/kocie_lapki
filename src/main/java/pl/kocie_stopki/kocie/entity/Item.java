@@ -15,9 +15,10 @@ import javax.persistence.Id;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private Double price;
     private String description;
     private int quantity;
+    private String imageLink;
 }

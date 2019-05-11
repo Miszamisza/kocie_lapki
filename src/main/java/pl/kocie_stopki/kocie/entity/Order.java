@@ -3,13 +3,12 @@ package pl.kocie_stopki.kocie.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
 
-@ToString
+import static javax.persistence.CascadeType.*;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,12 +17,12 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_order;
+    private Integer id;
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne(mappedBy = "order", cascade = PERSIST)
     private User user;
 
     @OneToMany
-    @JoinColumn(name = "id_item")
+    @JoinColumn(name = "item_id")
     private List<Item> item;
 }
