@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
-
-
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Header from '../header/Header';
 
 class Layout extends Component {
 
-
     render() {
         return (
-            <div>
-
-            </div>
+            <>
+                <Header/>
+                <main>
+                    {this.props.children}
+                </main>
+            </>
         );
     }
 }
