@@ -34,6 +34,16 @@ public class KocieLapkiApi {
         return dataBaseManager.updateItem(item);
     }
 
+    @GetMapping("/order/getAll")
+    public Iterable<Order> getOrderFromDatabase() {
+        return dataBaseManager.getAllOrders();
+    }
+
+    @GetMapping("/order/getOrder")
+    public Order getOrder(@RequestParam Integer id) {
+        return dataBaseManager.getOrder(id);
+    }
+
     @PostMapping("/order/add")
     public void addOrderToDatabase(@RequestBody Order order) {
         dataBaseManager.addOrder(order);
@@ -47,6 +57,16 @@ public class KocieLapkiApi {
     @PutMapping("/order/update")
     public String updateOrderInDatabase(@RequestBody Order order) {
         return dataBaseManager.updateOrder(order);
+    }
+
+    @GetMapping("/user/getAll")
+    public List<User> getAllUsersFromDatabase() {
+        return dataBaseManager.getAllUsers();
+    }
+
+    @GetMapping("/user/getUser")
+    public User getUser(@RequestParam Integer id) {
+        return dataBaseManager.getUser(id);
     }
 
     @PostMapping("/user/add")

@@ -1,6 +1,9 @@
 package pl.kocie_stopki.kocie.services;
 
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.kocie_stopki.kocie.entity.Item;
 import pl.kocie_stopki.kocie.entity.Order;
 import pl.kocie_stopki.kocie.entity.User;
@@ -9,7 +12,9 @@ import pl.kocie_stopki.kocie.repository.OrderRepo;
 import pl.kocie_stopki.kocie.repository.UserRepo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -24,11 +29,27 @@ public class DataBaseManager {
         this.userRepo = userRepo;
     }
 
-    public List<Item> getAllItems() {
-        List<Item> items = new ArrayList<>();
-        itemRepo.findAll().forEach(items::add);
-        return items;
+    @EventListener(ApplicationReadyEvent.class)
+    public void add() {
+        User user = new User();
+        user.setEmail("kotki@mail.com");
+        user.setPassword("1234");
+        user.setLogin("kotek2000");
+        user.setActive(true);
+        Item item1 = new Item("łapka", 10.50, "piękna pachnąca łapka", 50, "http:www:asdsad.pl");
+        Item item2 = new Item("kuweta", 15.30, "duża kuweta", 100, "http:www:gggdhhtusjj.pl");
+        Set<Item> items = new HashSet<>();
+        items.add(item1);
+        items.add(item2);
+        Order or = new Order();
+        or.setUser(user);
+        or.setItems(items);
+        itemRepo.save(item1);
+        itemRepo.save(item2);
+        userRepo.save(user);
+        orderRepo.save(or);
     }
+
 
     public void addItem(Item item) {
         itemRepo.save(item);
@@ -56,6 +77,14 @@ public class DataBaseManager {
         return "No item with id number: " + item.getId() + " in database";
     }
 
+    public Iterable<Order> getAllOrders() {
+        return orderRepo.findAll();
+    }
+
+    public Order getOrder(Integer id) {
+        return orderRepo.findById(id).get();
+    }
+
     public void addOrder(Order order) {
         orderRepo.save(order);
     }
@@ -73,13 +102,22 @@ public class DataBaseManager {
         if (orderRepo.findById(order.getId()).isPresent()) {
             Order orderToUpdate = orderRepo.findById(order.getId()).get();
             orderToUpdate.setUser(order.getUser());
-            orderToUpdate.setItem(order.getItem());
+            orderToUpdate.setItems(order.getItems());
             orderRepo.save(orderToUpdate);
             return "Order with id: " + orderToUpdate.getId() + " has been updated";
         }
         return "No order with id number: " + order.getId() + " in database";
     }
 
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        userRepo.findAll().forEach(users::add);
+        return users;
+    }
+
+    public User getUser(Integer id) {
+        return userRepo.findById(id).get();
+    }
     public void addUser(User user) {
         userRepo.save(user);
     }
