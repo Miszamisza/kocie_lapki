@@ -20,8 +20,10 @@ public class User {
     private String eMail;
     private String password;
     private boolean active;
+    private boolean isAdmin;
 
     @OneToOne
     private Order order;
+
 
 }
