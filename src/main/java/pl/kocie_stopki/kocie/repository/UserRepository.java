@@ -5,8 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.kocie_stopki.kocie.entity.User;
 
-@Repository
+@Repository("/userRepository")
 public interface UserRepository extends JpaRepository<User, Integer> {
+    public User findByEMail(String email);
 
-    User findByEmail(String eMail);
+
 }
