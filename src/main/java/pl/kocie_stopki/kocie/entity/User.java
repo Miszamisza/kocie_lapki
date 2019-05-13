@@ -18,6 +18,7 @@ import java.util.List;
 @ToString
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @PassMatch
 @EmailPass

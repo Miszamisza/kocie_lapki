@@ -21,7 +21,7 @@ public class RegistrationController {
     }
 
     @GetMapping(value = "/register")
-    public void register(User user) {
+    public void register(User user) throws Exception {
         userService.register(user);
     }
 

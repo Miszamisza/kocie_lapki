@@ -4,7 +4,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import pl.kocie_stopki.kocie.entity.User;
 
 public interface UserService {
-    String register(User user);
+    User register(User user) throws Exception;
 
     UserDetails loadUserByUsername(String username);
 

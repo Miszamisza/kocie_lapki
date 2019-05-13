@@ -36,16 +36,27 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    public String register(User user) {
+    public User register(User user) throws Exception {
+        if (emailExist(user.getEMail())) {
+            throw new Exception(
+                    "This eMail is already use");
+        }
         user.setEMail(user.getEMail());
         user.getLogin(user.getLogin());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(false);
         user.setAdmin(false);
-        userRepository.save(user);
-        return "Thanks for registration";
+        return userRepository.save(user);
+
     }
 
+    private boolean emailExist(String email) {
+        User user = userRepository.findByEMail(email);
+        if (user != null) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) {
