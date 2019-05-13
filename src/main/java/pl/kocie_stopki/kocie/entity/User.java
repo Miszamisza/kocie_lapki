@@ -1,13 +1,12 @@
 package pl.kocie_stopki.kocie.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,7 +20,7 @@ public class User {
     private String password;
     private boolean active;
 
-    @JsonManagedReference
+//    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<Order> order;
 }
