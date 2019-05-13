@@ -29,26 +29,26 @@ public class DataBaseManager {
         this.userRepo = userRepo;
     }
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void add() {
-        User user = new User();
-        user.setEmail("kotki@mail.com");
-        user.setPassword("1234");
-        user.setLogin("kotek2000");
-        user.setActive(true);
-        Item item1 = new Item("łapka", 10.50, "piękna pachnąca łapka", 50, "http:www:asdsad.pl");
-        Item item2 = new Item("kuweta", 15.30, "duża kuweta", 100, "http:www:gggdhhtusjj.pl");
-        Set<Item> items = new HashSet<>();
-        items.add(item1);
-        items.add(item2);
-        Order or = new Order();
-        or.setUser(user);
-        or.setItems(items);
-        itemRepo.save(item1);
-        itemRepo.save(item2);
-        userRepo.save(user);
-        orderRepo.save(or);
-    }
+//    @EventListener(ApplicationReadyEvent.class)
+//    public void add() {
+//        User user = new User();
+//        user.setEmail("kotki@mail.com");
+//        user.setPassword("1234");
+//        user.setLogin("kotek2000");
+//        user.setActive(true);
+//        Item item1 = new Item("łapka", 10.50, "piękna pachnąca łapka", 50, "http:www:asdsad.pl");
+//        Item item2 = new Item("kuweta", 15.30, "duża kuweta", 100, "http:www:gggdhhtusjj.pl");
+//        Set<Item> items = new HashSet<>();
+//        items.add(item1);
+//        items.add(item2);
+//        Order or = new Order();
+//        or.setUser(user);
+//        or.setItems(items);
+//        itemRepo.save(item1);
+//        itemRepo.save(item2);
+//        userRepo.save(user);
+//        orderRepo.save(or);
+//    }
 
 
     public void addItem(Item item) {

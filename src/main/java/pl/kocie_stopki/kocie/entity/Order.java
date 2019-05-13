@@ -1,6 +1,9 @@
 package pl.kocie_stopki.kocie.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,17 +17,19 @@ import static javax.persistence.CascadeType.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "orders")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        scope = Order.class)
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-//    @JsonBackReference
     @ManyToOne(cascade = MERGE)
     @JoinColumn(name = "user_id")
     private User user;
 
-//    @JsonBackReference
     @ManyToMany(cascade = MERGE)
     @JoinTable(
             name = "order_item",

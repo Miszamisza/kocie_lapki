@@ -1,5 +1,7 @@
 package pl.kocie_stopki.kocie.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,6 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        scope = User.class)
 public class User {
 
     @Id
@@ -20,7 +26,6 @@ public class User {
     private String password;
     private boolean active;
 
-//    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<Order> order;
 }
