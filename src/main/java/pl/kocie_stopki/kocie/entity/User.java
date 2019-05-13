@@ -31,10 +31,9 @@ public class User {
     @NotEmpty
     private String login;
 
-    final String regexs ="[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     @NotNull
     @NotEmpty
-    @Pattern(regexp = regexs)
+    @Pattern(regexp = "[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
     private String eMail;
 
     @NotNull

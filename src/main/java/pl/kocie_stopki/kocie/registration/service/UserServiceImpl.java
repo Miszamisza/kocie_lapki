@@ -37,10 +37,12 @@ public class UserServiceImpl implements UserService {
     }
 
     public User register(User user) throws Exception {
+
         if (emailExist(user.getEMail())) {
             throw new Exception(
                     "This eMail is already use");
         }
+        user= new User();
         user.setEMail(user.getEMail());
         user.getLogin(user.getLogin());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
