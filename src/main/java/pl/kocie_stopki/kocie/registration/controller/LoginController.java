@@ -1,4 +1,4 @@
-package pl.kocie_stopki.kocie.controller.registration;
+package pl.kocie_stopki.kocie.registration.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

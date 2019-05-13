@@ -1,4 +1,4 @@
-package pl.kocie_stopki.kocie.config;
+package pl.kocie_stopki.kocie.registration.config;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import pl.kocie_stopki.kocie.KocieApplication;

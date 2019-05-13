@@ -1,4 +1,4 @@
-package pl.kocie_stopki.kocie.controller.validator;
+package pl.kocie_stopki.kocie.registration.validator;
 
 import pl.kocie_stopki.kocie.entity.User;
 

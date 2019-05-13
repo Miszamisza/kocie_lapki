@@ -1,44 +1,67 @@
 package pl.kocie_stopki.kocie.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import pl.kocie_stopki.kocie.registration.validator.EmailPass;
+import pl.kocie_stopki.kocie.registration.validator.PassMatch;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.Set;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import java.util.List;
 
 @ToString
 @Data
 @AllArgsConstructor
 @Entity
+@PassMatch
+@EmailPass
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull
+    @NotEmpty
     private String login;
-    @Email(message = "Email should be valid")
+
+    final String regexs ="[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    @NotNull
+    @NotEmpty
+    @Pattern(regexp = regexs)
     private String eMail;
+
+    @NotNull
+    @NotEmpty
     @Transient
     private String confirmEmail;
+
+    @NotNull
+    @NotEmpty
     private String password;
+
+    @NotNull
+    @NotEmpty
     @Transient
     private String confirmPassword;
+
     private boolean active;
     private boolean isAdmin;
 
-    @OneToOne
-    private Order order;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user")
+    private List<Order> order;
 
-    @ManyToMany
-    private Set<Role> role;
+    public User(String login, String eMail, String confirmEmail, String password, String confirmPassword) {
+    }
 
 
-
-    public User(String login, String eMail, String password) {
+    public void getLogin(String login) {
         this.login = login;
-        this.eMail = eMail;
-        this.password =password;
     }
 }

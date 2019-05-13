@@ -1,4 +1,4 @@
-package pl.kocie_stopki.kocie.controller.utils;
+package pl.kocie_stopki.kocie.registration.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

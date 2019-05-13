@@ -1,14 +1,17 @@
 package pl.kocie_stopki.kocie.entity;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
-@ToString
+import static javax.persistence.CascadeType.*;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,13 +20,19 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_order;
+    private Integer id;
 
-    @OneToOne(mappedBy = "order")
+    @JsonBackReference
+    @ManyToOne(cascade = MERGE)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany
-    @JoinColumn(name = "id_item")
-    private List<Item> item;
-
+    @JsonBackReference
+    @ManyToMany(cascade = MERGE)
+    @JoinTable(
+            name = "order_item",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "item_id")}
+    )
+    private Set<Item> items;
 }
