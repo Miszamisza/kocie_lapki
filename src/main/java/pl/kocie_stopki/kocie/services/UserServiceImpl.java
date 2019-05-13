@@ -2,6 +2,7 @@ package pl.kocie_stopki.kocie.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 import pl.kocie_stopki.kocie.entity.User;
 import pl.kocie_stopki.kocie.repository.UserRepository;
 
@@ -17,19 +18,18 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
-    public User findUserByEmail(String email) {
-        return userRepository.findByEMail(email);
+    public ModelAndView register() {
+        ModelAndView modelAndView = new ModelAndView();
+        // User user = new User();
+        // modelAndView.addObject("user", user);
+        modelAndView.setViewName("register");
+        return modelAndView;
     }
 
-    @Override
-    public void saveUser(User user) {
-        user.setLogin(user.getLogin());
-        user.setPassword(user.getPassword());
-        user.setEMail(user.getEMail());
-        user.setActive(false);
-        user.setAdmin(false);
-        userRepository.save(user);
+    public ModelAndView home() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
+        return modelAndView;
     }
 
 }

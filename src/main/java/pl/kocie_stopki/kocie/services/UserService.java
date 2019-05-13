@@ -1,9 +1,10 @@
 package pl.kocie_stopki.kocie.services;
 
+import org.springframework.web.servlet.ModelAndView;
 import pl.kocie_stopki.kocie.entity.User;
 
 public interface UserService {
-    public User findUserByEmail(String email);
+    ModelAndView register();
 
-    void saveUser(User user);
+    ModelAndView home();
 }
