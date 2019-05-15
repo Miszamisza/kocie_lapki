@@ -2,7 +2,7 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [Functions] (#functions)
+* [Feature] (#features)
 
 ## General info
 This website is created in SDAcademy bootcamp. It is our final project. We develop basics of online shop. In projekt is several function like registration and login, method supported adding, updating and deleting items, oauth 2 authorization, pdf creator and sender. 
