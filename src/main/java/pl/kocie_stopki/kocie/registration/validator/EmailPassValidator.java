@@ -7,12 +7,13 @@ import javax.validation.ConstraintValidatorContext;
 
 public class EmailPassValidator implements ConstraintValidator<EmailPass, Object> {
 
-        @Override
-        public void initialize(EmailPass constraintAnnotation) {
-        }
-        @Override
-        public boolean isValid(Object obj, ConstraintValidatorContext context){
-            User user = (User) obj;
-            return user.getPassword().equals(user.getConfirmEmail());
-        }
+    @Override
+    public void initialize(EmailPass constraintAnnotation) {
     }
+
+    @Override
+    public boolean isValid(Object obj, ConstraintValidatorContext context) {
+        User user = (User) obj;
+        return user.getPassword().equals(user.getConfirmEmail());
+    }
+}

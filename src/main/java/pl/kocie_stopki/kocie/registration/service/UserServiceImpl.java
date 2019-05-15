@@ -3,23 +3,14 @@ package pl.kocie_stopki.kocie.registration.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import pl.kocie_stopki.kocie.entity.User;
 import pl.kocie_stopki.kocie.repository.UserRepository;
 
 
 @Service("/userService")
 public class UserServiceImpl implements UserService {
-
-
-    @Qualifier("userDetailsServiceImpl")
-    @Autowired
-    private UserDetailsService userDetailsService;
 
     @Autowired
     private UserRepository userRepository;
@@ -33,7 +24,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-
     }
 
     public User register(User user) throws Exception {
@@ -42,7 +32,7 @@ public class UserServiceImpl implements UserService {
             throw new Exception(
                     "This eMail is already use");
         }
-        user= new User();
+        user = new User();
         user.setEMail(user.getEMail());
         user.getLogin(user.getLogin());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -52,27 +42,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
     private boolean emailExist(String email) {
-        User user = userRepository.findByEMail(email);
-        if (user != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) {
-        return null;
-    }
-
-    @Override
-    public String findLoggedInUsername() {
-        return null;
-    }
-
-    @Override
-    public void autoLogin(String username, String password) {
-
+        User user = userRepository.findByEmail(email);
+        return user != null;
     }
 
 

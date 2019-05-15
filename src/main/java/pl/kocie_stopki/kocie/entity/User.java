@@ -1,10 +1,7 @@
 package pl.kocie_stopki.kocie.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import pl.kocie_stopki.kocie.registration.validator.EmailPass;
 import pl.kocie_stopki.kocie.registration.validator.PassMatch;
 
@@ -19,6 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @PassMatch
 @EmailPass
@@ -57,7 +55,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> order;
 
-    public User(String login, String eMail, String confirmEmail, String password, String confirmPassword) {
+    public User(int id, String userLogin, String encrytedPassword) {
+        this.id = id;
+        this.login = userLogin;
+        this.password = encrytedPassword;
     }
 
 
