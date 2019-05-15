@@ -2,8 +2,8 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [Features] (#features)
-* [Documentation] (#documentation)
+* [Features](#features)
+* [Documentation](#documentation)
 
 ## General info
 This website is created in SDAcademy bootcamp. It is our final project. We develop basics of online shop. In projekt is several function like registration and login, method supported adding, updating and deleting items, oauth 2 authorization, pdf creator and sender. 
@@ -11,6 +11,7 @@ This website is created in SDAcademy bootcamp. It is our final project. We devel
 ## Technologies
 Project is created with:
 * Java 1.8
+* React
 * Spring Boot 2.1.4
 * Spring Security
 * Spring Integration
