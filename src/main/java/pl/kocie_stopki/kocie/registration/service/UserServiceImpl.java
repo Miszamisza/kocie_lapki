@@ -26,6 +26,9 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    /** * This method queues the email for sending. *
+     * @param user User will be register
+     * @return Saved user **/
     public User register(User user) throws Exception {
 
         if (emailExist(user.getEMail())) {
@@ -41,11 +44,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
 
     }
-
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-
+    /** * This method queues the email for sending. *
+     * @param email Function check that email already exsist in database
+     * @return True if user exist **/
     private boolean emailExist(String email) {
         User user = userRepository.findByEmail(email);
         return user != null;

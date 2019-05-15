@@ -7,10 +7,17 @@ import javax.validation.ConstraintValidatorContext;
 
 public class EmailPassValidator implements ConstraintValidator<EmailPass, Object> {
 
+    private EmailPass emailPass;
+
     @Override
-    public void initialize(EmailPass constraintAnnotation) {
+    public void initialize(EmailPass emailPass) {
+        this.emailPass = emailPass;
     }
 
+    /** * This method queues the email for sending. *
+     * @param obj User
+     * @param context validator context
+     * @return True if emails are the same **/
     @Override
     public boolean isValid(Object obj, ConstraintValidatorContext context) {
         User user = (User) obj;
