@@ -7,5 +7,5 @@ import pl.kocie_stopki.kocie.entity.User;
 @Repository("/userRepository")
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    User findByEmail(String email);
+    User findByEMail(String email);
 }

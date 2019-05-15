@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
      * @param email Function check that email already exsist in database
      * @return True if user exist **/
     private boolean emailExist(String email) {
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findByEMail(email);
         return user != null;
     }
 
