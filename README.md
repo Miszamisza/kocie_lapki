@@ -1,12 +1,18 @@
 "# KocieLapki" place for cat lovers
 ## Table of contents
 * [General info](#general-info)
+* [Project and link](#projectandlink)
 * [Technologies](#technologies)
 * [Features](#features)
 * [Documentation](#documentation)
 
+
 ## General info
 This website is created in SDAcademy bootcamp. It is our final project. We develop basics of online shop. In projekt is several function like registration and login, method supported adding, updating and deleting items, oauth 2 authorization, pdf creator and sender. 
+
+## Project and link
+Everything started in Axure. Early page project is in https://6uh6bh.axshare.com/#id=4mn156&p=start_page. Link to final version is in "link"
+
 	
 ## Technologies
 Project is created with:
