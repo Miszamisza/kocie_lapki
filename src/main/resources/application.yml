@@ -17,22 +17,22 @@ spring:
       client:
         registration:
           google:
-            clientId: 829915623535-diingeebnekg66sba4n0b7e4efofm8p4.apps.googleusercontent.com
-            clientSecret: d_oMLgO_fLD8X0IlKwOwj9cZ
+            clientId:
+            clientSecret:
             redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - email
               - profile
           facebook:
-            clientId: 355932348368504
-            clientSecret: .2c2d4ad8734cdcd747b01d308f32fed3
+            clientId:
+            clientSecret:
             redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - email
               - public_profile
           github:
-            clientId: d3e47fc2ddd966fa4352
-            clientSecret: 3bc0f6b8332f93076354c2a5bada2f5a05aea60d
+            clientId:
+            clientSecret:
             redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - user:email
@@ -44,7 +44,7 @@ spring:
             userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
 app:
   auth:
-    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenSecret:
     tokenExpirationMsec: 3600000
   oauth2:
     authorizedRedirectUris:
