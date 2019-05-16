@@ -53,13 +53,11 @@ public class User {
     @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<Order> order;
-
     public User(int id, String userLogin, String encrytedPassword) {
         this.id = id;
         this.login = userLogin;
         this.password = encrytedPassword;
     }
-
 
     public void getLogin(String login) {
         this.login = login;

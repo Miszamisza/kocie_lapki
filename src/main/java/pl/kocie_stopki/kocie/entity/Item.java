@@ -36,4 +36,7 @@ public class Item {
         this.quantity = quantity;
         this.imageLink = imageLink;
     }
+
+    public Item(int id, String name, Double price, int quantity) {
+    }
 }
