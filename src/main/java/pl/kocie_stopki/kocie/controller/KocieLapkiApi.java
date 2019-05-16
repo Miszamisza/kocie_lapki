@@ -19,6 +19,8 @@ public class KocieLapkiApi {
         this.dataBaseManager = dataBaseManager;
     }
 
+    //Item API
+
     @PostMapping("/item/add")
     public void addItemToDatabase(@RequestBody Item item) {
         dataBaseManager.addItem(item);
@@ -33,6 +35,8 @@ public class KocieLapkiApi {
     public String updateItemInDatabase(@RequestBody Item item) {
         return dataBaseManager.updateItem(item);
     }
+
+    //Order API
 
     @GetMapping("/order/getAll")
     public Iterable<Order> getOrderFromDatabase() {
@@ -59,6 +63,8 @@ public class KocieLapkiApi {
         return dataBaseManager.updateOrder(order);
     }
 
+    //User API
+
     @GetMapping("/user/getAll")
     public List<User> getAllUsersFromDatabase() {
         return dataBaseManager.getAllUsers();
@@ -73,23 +79,6 @@ public class KocieLapkiApi {
     public void addUserToDatabase(@RequestBody User user) {
         dataBaseManager.addUser(user);
     }
-
-//    @GetMapping("/getMeeeeee")
-//    public Order getOreder() {
-////        User user = new User();
-////        user.setEmail("kotki@mail.com");
-////        user.setPassword("1234");
-////        user.setLogin("kotek2000");
-////        user.setActive(true);
-////        List<Item> items = new ArrayList<>();
-////        items.add(new Item(1, "łapka", 10.50, "piękna pachnąca łapka", 50, "http:www:asdsad.pl"));
-////        items.add(new Item(2, "kuweta", 15.30, "duża kuweta", 100, "http:www:gggdhhtusjj.pl"));
-////        Order or = new Order();
-////        or.setUser(user);
-////        or.setItem(items);
-////        return or;
-//    }
-
 
     @DeleteMapping("/user/delete")
     public String deleteUserFromDatabase(@RequestBody User user) {
