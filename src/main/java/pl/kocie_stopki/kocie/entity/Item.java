@@ -3,6 +3,7 @@ package pl.kocie_stopki.kocie.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
@@ -28,6 +29,7 @@ public class Item {
     private int quantity;
     private String imageLink;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "items")
     private Set<Order> orders;
 
