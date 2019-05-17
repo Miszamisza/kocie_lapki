@@ -12,7 +12,6 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import NavigationItems from './NavigationItems/NavigationItems';
 
-
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: 'rgb(255,102,102)',
@@ -91,7 +90,7 @@ const useStyles = makeStyles(theme => ({
     tabs: {
         display: 'inline-block',
     },
-    container: {
+    linkContainer: {
         display: 'flex',
         alignItems: 'center',
 
@@ -112,7 +111,7 @@ const Header = (props) => {
     const classes = useStyles();
 
     return (
-        <header>
+
             <HideOnScroll {...props}>
                 <AppBar className={classes.root}>
                     <Container maxWidth={"lg"}>
@@ -132,7 +131,7 @@ const Header = (props) => {
                             >
                                 Kitten Paws
                             </Typography>
-                            <div className={classes.container}>
+                            <div className={classes.linkContainer}>
                                 <div className={classes.search}>
                                     <div className={classes.searchIcon}>
                                         <SearchIcon/>
@@ -151,8 +150,6 @@ const Header = (props) => {
                     </Container>
                 </AppBar>
             </HideOnScroll>
-            <Toolbar/>
-        </header>
     );
 };
 

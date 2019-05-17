@@ -12,7 +12,7 @@ import CardActions from "@material-ui/core/CardActions";
 import {withStyles} from '@material-ui/styles';
 
 
-const styles = {
+const styles = theme => ({
     root: {
         backgroundColor: 'rgb(255,102,102)',
     },
@@ -22,25 +22,28 @@ const styles = {
     media: {
         height: 200,
     },
-    container : {
-        height:"85vh",
-        display:"flex",
-        justifyContent:"center",
-        alignItems:"center"
+    linkContainer: {
+        height: "85vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
     }
-};
+});
 
 
 class CatFacts extends Component {
 
     state = {
+        breeds: [],
         catPhotoUrl: "",
-        catFact: "",
+        catBreed: "",
         isLoading: true
     };
 
     componentDidMount() {
+
         this.loadCatPhoto();
+
 
         // const instance = axios.create({
         //     baseURL: 'https://cat-fact.herokuapp.com/',
@@ -67,6 +70,19 @@ class CatFacts extends Component {
             isLoading: true
         });
 
+
+        axios.get('https://api.thecatapi.com/v1/images/search')
+            .then(response => {
+                this.setState({
+                    catPhotoUrl: response.data[0].url,
+                    isLoading: false
+                });
+                console.log(response.data[0])
+            }).catch(error => {
+            console.log(error)
+        });
+
+
         axios.get('https://api.thecatapi.com/v1/images/search')
             .then(response => {
                 this.setState({
@@ -84,7 +100,7 @@ class CatFacts extends Component {
 
         let cart = <Spinner/>;
 
-        if(!this.state.isLoading){
+        if (!this.state.isLoading) {
             cart = (<Card className={this.props.classes.card}>
                 <CardActionArea>
                     <CardMedia
@@ -97,7 +113,8 @@ class CatFacts extends Component {
                             Cat fact
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto doloremque eos est ex expedita facere possimus quo repudiandae, vero!
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto doloremque
+                            eos est ex expedita facere possimus quo repudiandae, vero!
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -110,7 +127,7 @@ class CatFacts extends Component {
         }
 
         return (
-            <Container maxWidth={'lg'} className={this.props.classes.container}>
+            <Container maxWidth={'lg'} className={this.props.classes.linkContainer}>
                 {cart}
             </Container>
         )
