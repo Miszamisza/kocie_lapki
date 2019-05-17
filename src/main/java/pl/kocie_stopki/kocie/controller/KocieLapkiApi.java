@@ -7,9 +7,6 @@ import pl.kocie_stopki.kocie.entity.Order;
 import pl.kocie_stopki.kocie.entity.User;
 import pl.kocie_stopki.kocie.services.DataBaseManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
 public class KocieLapkiApi {
     private DataBaseManager dataBaseManager;
@@ -19,7 +16,14 @@ public class KocieLapkiApi {
         this.dataBaseManager = dataBaseManager;
     }
 
-    //Item API
+    @GetMapping("/item/getAll")
+    public Iterable<Item> getAllItems() {
+        return dataBaseManager.findAllItems();
+    }
+    @GetMapping("/item/get")
+    public Item getItem(@RequestParam Integer id){
+        return dataBaseManager.findSingleItem(id);
+    }
 
     @PostMapping("/item/add")
     public void addItemToDatabase(@RequestBody Item item) {
@@ -36,16 +40,14 @@ public class KocieLapkiApi {
         return dataBaseManager.updateItem(item);
     }
 
-    //Order API
-
     @GetMapping("/order/getAll")
     public Iterable<Order> getOrderFromDatabase() {
-        return dataBaseManager.getAllOrders();
+        return dataBaseManager.findAllOrders();
     }
 
-    @GetMapping("/order/getOrder")
+    @GetMapping("/order/get")
     public Order getOrder(@RequestParam Integer id) {
-        return dataBaseManager.getOrder(id);
+        return dataBaseManager.findSingleOrder(id);
     }
 
     @PostMapping("/order/add")
@@ -63,16 +65,14 @@ public class KocieLapkiApi {
         return dataBaseManager.updateOrder(order);
     }
 
-    //User API
-
     @GetMapping("/user/getAll")
-    public List<User> getAllUsersFromDatabase() {
-        return dataBaseManager.getAllUsers();
+    public Iterable<User> getAllUsersFromDatabase() {
+        return dataBaseManager.findAllUsers();
     }
 
-    @GetMapping("/user/getUser")
+    @GetMapping("/user/get")
     public User getUser(@RequestParam Integer id) {
-        return dataBaseManager.getUser(id);
+        return dataBaseManager.findSingleUser(id);
     }
 
     @PostMapping("/user/add")

@@ -1,12 +1,11 @@
 package pl.kocie_stopki.kocie.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.*;
@@ -36,5 +35,5 @@ public class Order {
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "item_id")}
     )
-    private Set<Item> items;
+    private List<Item> items;
 }
