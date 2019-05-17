@@ -1,41 +1,35 @@
 package pl.kocie_stopki.kocie.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        scope =Item.class)
+
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     private String name;
     private Double price;
     private String description;
     private int quantity;
     private String imageLink;
 
-    @JsonManagedReference
     @ManyToMany(mappedBy = "items")
-    private Set<Order> orders;
-
-    public Item(String name, Double price, String description, int quantity, String imageLink) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.quantity = quantity;
-        this.imageLink = imageLink;
-    }
+    private List<Order> orders;
 
     public Item(int id, String name, Double price, int quantity) {
     }

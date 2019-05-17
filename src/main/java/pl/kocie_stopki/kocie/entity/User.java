@@ -1,28 +1,37 @@
 package pl.kocie_stopki.kocie.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import org.springframework.stereotype.Component;
 import pl.kocie_stopki.kocie.registration.validator.EmailPass;
 import pl.kocie_stopki.kocie.registration.validator.PassMatch;
 
 import javax.persistence.*;
+import java.util.List;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.List;
-
+@Getter
+@Setter
+@PassMatch
+@EmailPass
 @ToString
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@PassMatch
-@EmailPass
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        scope = User.class)
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotNull
     @NotEmpty
@@ -31,7 +40,7 @@ public class User {
     @NotNull
     @NotEmpty
     @Pattern(regexp = "[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
-    private String eMail;
+    private String email;
 
     @NotNull
     @NotEmpty
@@ -48,11 +57,11 @@ public class User {
     private String confirmPassword;
 
     private boolean active;
-    private boolean isAdmin;
+    private boolean isadmin;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<Order> order;
+
     public User(int id, String userLogin, String encrytedPassword) {
         this.id = id;
         this.login = userLogin;

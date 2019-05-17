@@ -1,8 +1,9 @@
 package pl.kocie_stopki.kocie.repository;
 
+import pl.kocie_stopki.kocie.entity.Item;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import pl.kocie_stopki.kocie.entity.Item;
+
 /**
  * Thic class is a repostitory for items. It provides create, remove, uptdate, delete functions.
  */
