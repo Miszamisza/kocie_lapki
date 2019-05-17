@@ -4,7 +4,9 @@ import pl.kocie_stopki.kocie.entity.User;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
+/**
+ * Thic class provide method to validate password
+ */
 public class PasswordMatchValidator implements ConstraintValidator<PassMatch, Object> {
 
     private PassMatch passMatch;

@@ -5,6 +5,9 @@ import pl.kocie_stopki.kocie.entity.User;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * Thic class provide method to validate email
+ */
 public class EmailPassValidator implements ConstraintValidator<EmailPass, Object> {
 
     private EmailPass emailPass;

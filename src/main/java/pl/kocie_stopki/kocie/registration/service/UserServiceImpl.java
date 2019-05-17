@@ -7,7 +7,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.kocie_stopki.kocie.entity.User;
 import pl.kocie_stopki.kocie.repository.UserRepository;
-
+/**
+ * This class is service implementation for registration process
+ */
 
 @Service("/userService")
 public class UserServiceImpl implements UserService {

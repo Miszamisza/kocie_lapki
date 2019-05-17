@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.kocie_stopki.kocie.entity.Item;
 import pl.kocie_stopki.kocie.repository.ItemRepo;
 
+
 @Service
 public class DataBaseManager {
     private ItemRepo itemRepo;

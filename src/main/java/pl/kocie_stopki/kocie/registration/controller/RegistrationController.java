@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import pl.kocie_stopki.kocie.entity.User;
 import pl.kocie_stopki.kocie.registration.service.UserService;
 
+/**
+ * Class provides endpoints to register new user
+ */
 @Controller
 public class RegistrationController {
 
