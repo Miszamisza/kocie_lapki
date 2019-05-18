@@ -65,10 +65,10 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2),
         flexShrink: 0,
         color: 'white',
-        transition:'all 0.2s',
+        transition: 'all 0.2s',
         '&:hover': {
             color: '#848484',
-            textDecoration:'none'
+            textDecoration: 'none'
         }
     },
     toolbar: {
@@ -112,44 +112,32 @@ const Header = (props) => {
 
     return (
 
-            <HideOnScroll {...props}>
-                <AppBar className={classes.root}>
-                    <Container maxWidth={"lg"}>
-                        <Toolbar className={classes.toolbar}>
-                            <IconButton
-                                edge="start"
-                                className={classes.menuButton}
-                                color="inherit"
-                                aria-label="Open drawer"
-                            >
-                                <MenuIcon/>
-                            </IconButton>
-                            <Typography
-                                variant="h4"
-                                className={classes.typography}
+        <HideOnScroll {...props}>
+            <AppBar className={classes.root}>
+                <Container maxWidth={"lg"}>
+                    <Toolbar className={classes.toolbar}>
+                        <IconButton
+                            edge="start"
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="Open drawer"
+                        >
+                            <MenuIcon/>
+                        </IconButton>
+                        <Typography
+                            variant="h4"
+                            className={classes.typography}
 
-                            >
-                                Kitten Paws
-                            </Typography>
-                            <div className={classes.linkContainer}>
-                                <div className={classes.search}>
-                                    <div className={classes.searchIcon}>
-                                        <SearchIcon/>
-                                    </div>
-                                    <InputBase
-                                        placeholder="Search…"
-                                        classes={{
-                                            root: classes.inputRoot,
-                                            input: classes.inputInput,
-                                        }}
-                                    />
-                                </div>
-                                <NavigationItems/>
-                            </div>
-                        </Toolbar>
-                    </Container>
-                </AppBar>
-            </HideOnScroll>
+                        >
+                            Kitten Paws
+                        </Typography>
+                        <div className={classes.linkContainer}>
+                            <NavigationItems/>
+                        </div>
+                    </Toolbar>
+                </Container>
+            </AppBar>
+        </HideOnScroll>
     );
 };
 
