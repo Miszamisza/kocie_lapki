@@ -6,20 +6,26 @@ import IconButton from "@material-ui/core/IconButton";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import connect from "react-redux/es/connect/connect";
 import {Link as LinkProvider} from 'react-router-dom';
+import Avatar from "@material-ui/core/Avatar/Avatar";
 
 
 const useStyles = makeStyles(theme => ({
 
     cartButton: {
         color: 'white',
-        display: 'inline-block',
+        display: 'inline',
         marginRight: theme.spacing(2),
         transition: 'all 0.2s',
         '&:hover': {
             color: '#848484',
             textDecoration: 'none'
         }
-    }
+    },
+
+    avatar: {
+        width: "1.5rem",
+        height: "auto"
+    },
 }));
 
 
@@ -38,6 +44,29 @@ const UserMenu = (props) => {
     };
 
 
+    let avatar = (
+        <AccountCircle/>
+    );
+
+    if (props.imageURL) {
+        console.log(props.imageURL);
+        avatar = (
+            <Avatar alt="user avatar" src={props.imageURL} className={classes.avatar}/>
+        );
+    }
+
+    let adminItems = null;
+
+    if (props.isAdmin) {
+        adminItems = (
+            <div>
+                <MenuItem onClick={handleClose}>Users</MenuItem>
+                <MenuItem onClick={handleClose}>Orders</MenuItem>
+                <MenuItem onClick={handleClose}>Admin panel</MenuItem>
+            </div>
+        );
+    }
+
     return (
         <div>
             <IconButton
@@ -47,13 +76,14 @@ const UserMenu = (props) => {
                 aria-haspopup="true"
                 onClick={handleClick}
             >
-                <AccountCircle/>
+                {avatar}
             </IconButton>
 
             <Menu id="simple-menu"
                   anchorEl={anchorEl}
                   open={Boolean(anchorEl)}
-                  onClose={handleClose}>
+                  onClose={handleClose}
+            >
 
                 <LinkProvider to='/logout'>
                     <MenuItem onClick={handleClose}>
@@ -62,6 +92,7 @@ const UserMenu = (props) => {
                 </LinkProvider>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
+                {adminItems}
             </Menu>
         </div>
     );
@@ -71,7 +102,8 @@ const UserMenu = (props) => {
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.authReducer.token != null,
-        isAdmin: state.authReducer.isAdmin
+        isAdmin: state.authReducer.scope === 'ROLE_USER ROLE_ADMIN',
+        imageURL: state.authReducer.imageURL
     }
 };
 

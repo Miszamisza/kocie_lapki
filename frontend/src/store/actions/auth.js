@@ -16,12 +16,13 @@ const authStart = () => {
 };
 
 
-const authSuccess = (token, userId, isAdmin) => {
+const authSuccess = (token, userId, scope, imageURL) => {
     return {
         type: AUTH_SUCCESS,
         token: token,
         userId: userId,
-        isAdmin: isAdmin
+        scope: scope,
+        imageURL: imageURL
     }
 };
 
@@ -39,6 +40,7 @@ export const userLogout = () => {
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('userId');
     localStorage.removeItem('scope');
+    localStorage.removeItem('imageURL');
 
     return {
         type: AUTH_LOGOUT
@@ -51,15 +53,10 @@ const checkAuthTimeout = (expirationTime) => {
 
         setTimeout(() => {
             dispatch(userLogout());
-        }, expirationTime * 1000
+        }, expirationTime * 1000000
         );
     };
 };
-
-const isAdminChecker = (scope) => {
-    return scope === 'ROLE_ADMIN'
-};
-
 
 export const auth = (authData, isSignedUp) => {
 
@@ -84,18 +81,50 @@ export const auth = (authData, isSignedUp) => {
                 localStorage.setItem('expirationDate', '' + expirationDate);
                 localStorage.setItem('userId', response.data.userId);
                 localStorage.setItem('scope', response.data.scope);
+                localStorage.setItem('imageURL', response.data.imageURL ? response.data.imageURL : '');
+
+                console.log(response.data);
 
                 dispatch(authSuccess(
                     response.data.accessToken,
                     response.data.userId,
-                    isAdminChecker(response.data.scope)
+                    response.data.scope,
+                    response.data.imageURL
                 ));
 
-                dispatch(checkAuthTimeout(response.data.expiresIn));
+                // dispatch(checkAuthTimeout(response.data.expiresIn));
             })
             .catch(err => {
                 dispatch(authFail(err.response.data.error));
             })
+    }
+};
+
+export const oAuth2 = (userId, imageURL, scope, token, error, expiresIn) => {
+
+    return dispatch => {
+
+        dispatch(authStart());
+
+        localStorage.setItem('token', token);
+        const expirationDate = new Date(new Date().getTime() + expiresIn * 1000000000);
+        localStorage.setItem('expirationDate', '' + expirationDate);
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('scope', scope);
+        localStorage.setItem('imageURL', imageURL);
+
+        dispatch(authSuccess(
+            token,
+            userId,
+            scope,
+            imageURL
+        ));
+
+        // dispatch(checkAuthTimeout(expiresIn));
+
+        if (error !== null && error !== '') {
+            dispatch(authFail(error));
+        }
     }
 };
 
@@ -105,18 +134,18 @@ export const authCheckState = () => {
         const token = localStorage.getItem('token');
         const expirationDate = new Date(localStorage.getItem('expirationDate'));
 
-        if (!token || expirationDate <= new Date()) {
-
-            dispatch(userLogout());
+        if (token === null || expirationDate <= new Date()) {
+            // dispatch(userLogout());
 
         } else {
             dispatch(authSuccess(
                 token,
                 localStorage.getItem('userId'),
-                isAdminChecker(localStorage.getItem('scope'))
+                localStorage.getItem('scope'),
+                localStorage.getItem('imageURL')
             ));
 
-            dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
+            // dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
         }
     }
 };

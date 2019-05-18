@@ -10,8 +10,9 @@ const initialState = {
     token: null,
     userId: null,
     error: null,
+    imageURL: null,
     loading: false,
-    isAdmin: false
+    scope: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,6 +24,9 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 token: null,
                 userId: null,
+                scope: null,
+                imageURL: null,
+                email: null
             };
 
         case AUTH_START :
@@ -44,7 +48,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 token: action.token,
                 userId: action.userId,
-                isAdmin: action.isAdmin,
+                scope: action.scope,
+                imageURL: action.imageURL,
                 error: null,
                 loading: false
             };

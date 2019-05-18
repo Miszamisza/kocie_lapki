@@ -1,5 +1,5 @@
 import React from 'react';
-import LockOutlinedIcon from "@material-ui/core/SvgIcon";
+// import LockOutlinedIcon from "@material-ui/core/SvgIcon";
 import Button from "@material-ui/core/Button";
 import {FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL} from "../../../../constants/index";
 import Typography from "@material-ui/core/Typography";
@@ -95,7 +95,6 @@ const LoginForm = (props) => {
     return (
         <Container component="section" className={classes.root}>
             <div className={classes.paper}>
-                <LockOutlinedIcon/>
                 <Button component={"a"}
                         href={GOOGLE_AUTH_URL}
                         fullWidth
