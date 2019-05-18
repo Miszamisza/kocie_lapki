@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://kitten-paws.mysql.database.azure.com:3306/kitten_paws_db?useSSL=true&requireSSL=false&serverTimezone=UTC
     username: shopkeeper@kitten-paws
-    password:
+    password: 1ProjecT2
 
   jpa:
     show-sql: true
@@ -18,21 +18,21 @@ spring:
         registration:
           google:
             clientId: 829915623535-diingeebnekg66sba4n0b7e4efofm8p4.apps.googleusercontent.com
-            clientSecret:
+            clientSecret: d_oMLgO_fLD8X0IlKwOwj9cZ
             redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - email
               - profile
           facebook:
             clientId: 355932348368504
-            clientSecret:
+            clientSecret: .2c2d4ad8734cdcd747b01d308f32fed3
             redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - email
               - public_profile
           github:
             clientId: d3e47fc2ddd966fa4352
-            clientSecret:
+            clientSecret: 3bc0f6b8332f93076354c2a5bada2f5a05aea60d
             redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - user:email
@@ -46,10 +46,11 @@ spring:
 
 app:
   auth:
-    tokenSecret: 9
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
     tokenExpirationMsec: 36000000000
   oauth2:
     authorizedRedirectUris:
-      - http://localhost:3000/oauth2/redirect
+      - https://kitten-paws.azurewebsites.net/oauth2/redirect
 server:
   port: 8080
+
