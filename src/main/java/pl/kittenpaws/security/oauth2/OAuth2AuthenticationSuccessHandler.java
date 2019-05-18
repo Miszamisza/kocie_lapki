@@ -73,12 +73,16 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
         String token = authToken.getAccessToken();
         Long expiresIn = authToken.getExpiresIn();
-        String role = authToken.getScope();
+        String scope= authToken.getScope();
+        String imageURL = authToken.getImageUrl();
+        String userId = authToken.getUserId();
 
         return UriComponentsBuilder.fromUriString(targetUrl)
                 .queryParam("token", token)
                 .queryParam("expires_in", expiresIn)
-                .queryParam("role", role)
+                .queryParam("scope", scope)
+                .queryParam("imageURL", imageURL)
+                .queryParam("userId", userId)
                 .build().toUriString();
     }
 

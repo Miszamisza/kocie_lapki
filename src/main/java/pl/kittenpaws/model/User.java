@@ -32,7 +32,7 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    private boolean isAdmin;
+    private boolean isAdmin = false;
 
 //    private Map<String, String> preferences;
 

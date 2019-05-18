@@ -47,7 +47,9 @@ public class TokenProvider {
                 .getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining()));
+                .collect(Collectors.joining(" ")),
+                userPrincipal.getImageURL()
+        );
     }
 
     public Long getUserIdFromToken(String token) {
