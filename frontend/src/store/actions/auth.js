@@ -63,10 +63,10 @@ export const auth = (authData, isSignedUp) => {
     return dispatch => {
         dispatch(authStart());
 
-        let endpoint = 'http://localhost:8080/auth/login';
+        let endpoint = 'https://kitten-paws.azurewebsites.net/auth/login';
 
         if (!isSignedUp) {
-            endpoint = 'http://localhost:8080/auth/signup';
+            endpoint = 'https://kitten-paws.azurewebsites.net/auth/signup';
         }
 
         console.log(authData);
