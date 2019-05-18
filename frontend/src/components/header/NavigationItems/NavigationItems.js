@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(2),
         transition: 'all 0.2s',
         '&:hover': {
-            color: '#848484',
+            color: '#ecf0f1',
             textDecoration: 'none'
         }
     },
@@ -31,6 +31,7 @@ const NavigationItems = (props) => {
     const classes = useStyles();
 
     let auth = (
+
         <NavLink to="/login">
             <IconButton className={classes.cartButton}
                         aria-label="Add to shopping cart">

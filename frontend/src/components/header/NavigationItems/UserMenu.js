@@ -85,13 +85,13 @@ const UserMenu = (props) => {
                   onClose={handleClose}
             >
 
-                <LinkProvider to='/logout'>
+
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <LinkProvider to='/logout' style={{textDecoration: "none", color:"black"}}>
                     <MenuItem onClick={handleClose}>
                         Logout
                     </MenuItem>
                 </LinkProvider>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
                 {adminItems}
             </Menu>
         </div>
