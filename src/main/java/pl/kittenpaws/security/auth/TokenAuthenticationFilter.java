@@ -29,6 +29,17 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
 
+    public TokenAuthenticationFilter(
+            TokenProvider tokenProvider
+            ,CustomUserDetailsService customUserDetailsService)
+    {
+
+        this.tokenProvider = tokenProvider;
+        this.customUserDetailsService = customUserDetailsService;
+
+    }
+
+
 
     private String getJwtFromRequest(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
